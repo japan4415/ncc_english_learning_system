@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" href="index.css">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    </head>
+    <body>
+        
+        <div id="app">
+            {{ message }}
+            <div>
+                <input v-model="range.start">
+                <input v-model="range.start_number">
+                <input v-model="range.end">
+                <input v-model="range.end_number">
+                <button @click="start">Start</button>
+                <button @click="shuffle">Shuffle</button>
+                <br>
+            </div>
+            <div v-if="ready">
+                <span>{{ current_number }}/{{ target_datas.length }}</span>
+                <button @click="next">Next</button>
+                <button @click="toggle_japanese">Toggle Japanese</button><br>
+                <span>{{ recognition_text }}</span>
+            </div>
+            <div v-if="japanese_avalable">
+                <span>{{ target_datas[current_number-1].Japanese }}</span>
+            </div>
+            <button @click="toggle_dev">Toggle Dev Mode</button><br>
+            <div v-if="dev_avalable">
+                <span v-for="data in target_datas">{{ data }}<br></span>
+            </div>
+        </div>
+        
+        <script src="playground.js"></script>
+    </body>
+</html>
